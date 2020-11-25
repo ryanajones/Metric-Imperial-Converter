@@ -8,14 +8,17 @@
 
 function ConvertHandler() {
   this.getNum = function (input) {
-    let result;
-
+    const regex = /[a-z]/;
+    const index = input.search(regex);
+    let result = input.slice(0, index);
+    if (result === '') result = '1';
     return result;
   };
 
   this.getUnit = function (input) {
-    let result;
-
+    const regex = /[a-z]/;
+    const index = input.search(regex);
+    const result = input.slice(index, input.length);
     return result;
   };
 
