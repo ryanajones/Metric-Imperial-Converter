@@ -20,9 +20,9 @@ module.exports = function (app) {
     const returnUnit = convertHandler.getReturnUnit(initUnit);
     const toString = convertHandler.getString(
       initNum,
-      initUnit,
+      convertHandler.spellOutUnit(initUnit),
       returnNum,
-      returnUnit
+      convertHandler.spellOutUnit(returnUnit)
     );
 
     // res.json
