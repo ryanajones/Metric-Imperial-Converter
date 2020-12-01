@@ -8,15 +8,17 @@
 
 function ConvertHandler() {
   this.getNum = function (input) {
-    const regex = /[a-z][A-Z]/;
-    const index = input.search(regex);
+    const regexSplit = /[a-z]/i;
+    const index = input.search(regexSplit);
     let result = input.slice(0, index);
+    const regexNum = /[1-9]\d*(\.\d+)?\/?[1-9]?(\d*)?(\.\d+)?/;
     if (result === '') result = '1';
+    if (regexNum.test(result) === false) result = 'invalid number';
     return result;
   };
 
   this.getUnit = function (input) {
-    const regex = /[a-z][A-Z]/;
+    const regex = /[a-z]/i;
     const index = input.search(regex);
     const result = input.slice(index, input.length);
     return result;
@@ -131,7 +133,7 @@ function ConvertHandler() {
     }
 
     if (initNum !== 'invalid number' && initUnit !== 'invalid unit') {
-      result = `${initNum} ${initUnit} convert to ${returnNum} ${returnUnit}.`;
+      result = `${initNum} ${initUnit} converts to ${returnNum} ${returnUnit}.`;
     }
 
     return result;
