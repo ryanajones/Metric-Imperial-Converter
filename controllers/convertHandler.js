@@ -1,3 +1,4 @@
+/* eslint-disable no-eval */
 /*
  *
  *
@@ -12,8 +13,17 @@ function ConvertHandler() {
     const index = input.search(regexSplit);
     let result = input.slice(0, index);
     const regexNum = /[1-9]\d*(\.\d+)?\/?[1-9]?(\d*)?(\.\d+)?/;
-    if (result === '') result = '1';
-    if (regexNum.test(result) === false) result = 'invalid number';
+
+    if (result === '') {
+      result = '1';
+    }
+
+    if (regexNum.test(result) === false) {
+      result = 'invalid number';
+    } else {
+      result = eval(result);
+    }
+
     return result;
   };
 
@@ -29,7 +39,7 @@ function ConvertHandler() {
 
     switch (initUnit) {
       case 'gal':
-        result = 'L';
+        result = 'l';
         break;
       case 'lbs':
         result = 'kg';
@@ -37,7 +47,7 @@ function ConvertHandler() {
       case 'mi':
         result = 'km';
         break;
-      case 'L':
+      case 'l':
         result = 'gal';
         break;
       case 'kg':
@@ -66,7 +76,7 @@ function ConvertHandler() {
       case 'mi':
         result = 'miles';
         break;
-      case 'L':
+      case 'l':
         result = 'liters';
         break;
       case 'kg':

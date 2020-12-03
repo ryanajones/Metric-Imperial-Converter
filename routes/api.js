@@ -26,5 +26,12 @@ module.exports = function (app) {
     );
 
     // res.json
+    res.json({
+      initNum,
+      initUnit,
+      returnNum,
+      returnUnit,
+      string: toString,
+    });
   });
 };
