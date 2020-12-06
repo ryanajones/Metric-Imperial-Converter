@@ -13,13 +13,18 @@ function ConvertHandler() {
     const index = input.search(regexSplit);
     let result = input.slice(0, index);
     const regexNum = /[1-9]\d*(\.\d+)?\/?[1-9]?(\d*)?(\.\d+)?/;
+    const regexDoubleFraction = /\//g;
 
     if (result === '') {
-      result = '1';
+      result = 1;
     }
 
     if (regexNum.test(result) === false) {
       result = 'invalid number';
+    } else if (result.match(regexDoubleFraction) !== null) {
+      if (result.match(regexDoubleFraction).length >= 2) {
+        result = 'invalid number';
+      }
     } else {
       result = eval(result);
     }
@@ -30,7 +35,14 @@ function ConvertHandler() {
   this.getUnit = function (input) {
     const regex = /[a-z]/i;
     const index = input.search(regex);
-    const result = input.slice(index, input.length);
+    let result = input.slice(index, input.length);
+
+    if (result === 'l' || result === 'L') {
+      result = 'L';
+    } else {
+      result = result.toLowerCase();
+    }
+
     return result;
   };
 
@@ -39,7 +51,7 @@ function ConvertHandler() {
 
     switch (initUnit) {
       case 'gal':
-        result = 'l';
+        result = 'L';
         break;
       case 'lbs':
         result = 'kg';
@@ -47,7 +59,7 @@ function ConvertHandler() {
       case 'mi':
         result = 'km';
         break;
-      case 'l':
+      case 'L':
         result = 'gal';
         break;
       case 'kg':
@@ -76,7 +88,7 @@ function ConvertHandler() {
       case 'mi':
         result = 'miles';
         break;
-      case 'l':
+      case 'L':
         result = 'liters';
         break;
       case 'kg':
@@ -102,6 +114,10 @@ function ConvertHandler() {
 
     let result;
 
+    if (initNum === 'invalid number') {
+      return (result = 'invalid number');
+    }
+
     switch (initUnit) {
       case 'gal':
         result = initNum * galToL;
@@ -122,7 +138,7 @@ function ConvertHandler() {
         result = initNum * kmTomi;
         break;
       default:
-        result = 'invalid';
+        result = 'invalid number';
     }
     return result;
   };

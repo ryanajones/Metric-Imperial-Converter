@@ -26,12 +26,20 @@ module.exports = function (app) {
     );
 
     // res.json
-    res.json({
-      initNum,
-      initUnit,
-      returnNum,
-      returnUnit,
-      string: toString,
-    });
+    if (
+      toString === 'invalid number' ||
+      toString === 'invalid unit' ||
+      toString === 'invalid number and unit'
+    ) {
+      res.json({ t: 'hello' });
+    } else {
+      res.json({
+        initNum,
+        initUnit,
+        returnNum,
+        returnUnit,
+        string: toString,
+      });
+    }
   });
 };
