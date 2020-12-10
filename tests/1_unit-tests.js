@@ -35,19 +35,19 @@ suite('Unit Tests', function () {
 
     test('Fractional Input w/ Decimal', function (done) {
       const input = '3.5/7L';
-      assert.equal(converHandler.getNum(input), 0.5);
+      assert.equal(convertHandler.getNum(input), 0.5);
       done();
     });
 
     test('Invalid Input (double fraction)', function (done) {
       const input = '3//L';
-      assert.equal(converHandler.getNum(input), 'invalid number');
+      assert.equal(convertHandler.getNum(input), 'invalid number');
       done();
     });
 
     test('No Numerical Input', function (done) {
-      const input = 'tester';
-      assert.equal(converHandler.getNum(input), 'invalid number');
+      const input = 'kg';
+      assert.equal(convertHandler.getNum(input), 1);
       done();
     });
   });
@@ -68,8 +68,22 @@ suite('Unit Tests', function () {
         'LBS',
         'KG',
       ];
-      input.forEach(function (ele) {
-        assert.equal(converHandler.getUnit(ele), ele);
+      const output = [
+        'gal',
+        'L',
+        'mi',
+        'km',
+        'lbs',
+        'kg',
+        'gal',
+        'L',
+        'mi',
+        'km',
+        'lbs',
+        'kg',
+      ];
+      input.forEach(function (ele, i) {
+        assert.equal(convertHandler.getUnit(ele), output[i]);
       });
       done();
     });
@@ -83,8 +97,8 @@ suite('Unit Tests', function () {
 
   suite('Function convertHandler.getReturnUnit(initUnit)', function () {
     test('For Each Valid Unit Inputs', function (done) {
-      const input = ['gal', 'l', 'mi', 'km', 'lbs', 'kg'];
-      const expect = ['l', 'gal', 'km', 'mi', 'kg', 'lbs'];
+      const input = ['gal', 'L', 'mi', 'km', 'lbs', 'kg'];
+      const expect = ['L', 'gal', 'km', 'mi', 'kg', 'lbs'];
       input.forEach(function (ele, i) {
         assert.equal(convertHandler.getReturnUnit(ele), expect[i]);
       });
@@ -94,7 +108,7 @@ suite('Unit Tests', function () {
 
   suite('Function convertHandler.spellOutUnit(unit)', function () {
     test('For Each Valid Unit Inputs', function (done) {
-      const input = ['gal', 'l', 'mi', 'km', 'lbs', 'kg'];
+      const input = ['gal', 'L', 'km', 'mi', 'kg', 'lbs'];
       const expect = [
         'gallons',
         'liters',
@@ -123,7 +137,7 @@ suite('Unit Tests', function () {
     });
 
     test('L to Gal', function (done) {
-      const input = [5, 'l'];
+      const input = [5, 'L'];
       const expected = 1.32086;
       assert.approximately(
         convertHandler.convert(input[0], input[1]),

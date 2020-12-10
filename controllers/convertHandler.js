@@ -17,14 +17,15 @@ function ConvertHandler() {
 
     if (result === '') {
       result = 1;
+      return result;
     }
-
     if (regexNum.test(result) === false) {
       result = 'invalid number';
-    } else if (result.match(regexDoubleFraction) !== null) {
-      if (result.match(regexDoubleFraction).length >= 2) {
-        result = 'invalid number';
-      }
+    } else if (
+      result.match(regexDoubleFraction) !== null &&
+      result.match(regexDoubleFraction).length >= 2
+    ) {
+      result = 'invalid number';
     } else {
       result = eval(result);
     }
@@ -41,6 +42,19 @@ function ConvertHandler() {
       result = 'L';
     } else {
       result = result.toLowerCase();
+    }
+
+    const possibleUnits = ['gal', 'L', 'lbs', 'kg', 'mi', 'km'];
+    let count = 0;
+
+    possibleUnits.forEach((ele) => {
+      if (ele === result) {
+        count++;
+      }
+    });
+
+    if (count === 0) {
+      result = 'invalid unit';
     }
 
     return result;
@@ -110,35 +124,37 @@ function ConvertHandler() {
     const lbsToKg = 0.453592;
     const kgToLbs = 2.20462;
     const miToKm = 1.60934;
-    const kmTomi = 0.621371;
+    const kmToMi = 0.621371;
 
     let result;
 
     if (initNum === 'invalid number') {
-      return (result = 'invalid number');
+      result = 'invalid number';
     }
 
-    switch (initUnit) {
-      case 'gal':
-        result = initNum * galToL;
-        break;
-      case 'L':
-        result = initNum * literToGal;
-        break;
-      case 'lbs':
-        result = initNum * lbsToKg;
-        break;
-      case 'kg':
-        result = initNum * kgToLbs;
-        break;
-      case 'mi':
-        result = initNum * miToKm;
-        break;
-      case 'km':
-        result = initNum * kmTomi;
-        break;
-      default:
-        result = 'invalid number';
+    if (result !== 'invalid number') {
+      switch (initUnit) {
+        case 'gal':
+          result = initNum * galToL;
+          break;
+        case 'L':
+          result = initNum * literToGal;
+          break;
+        case 'lbs':
+          result = initNum * lbsToKg;
+          break;
+        case 'kg':
+          result = initNum * kgToLbs;
+          break;
+        case 'mi':
+          result = initNum * miToKm;
+          break;
+        case 'km':
+          result = initNum * kmToMi;
+          break;
+        default:
+          result = 'invalid number';
+      }
     }
     return result;
   };
@@ -159,7 +175,7 @@ function ConvertHandler() {
     }
 
     if (initNum !== 'invalid number' && initUnit !== 'invalid unit') {
-      result = `${initNum} ${initUnit} converts to ${returnNum} ${returnUnit}.`;
+      result = `${initNum} ${initUnit} converts to ${returnNum} ${returnUnit}`;
     }
 
     return result;

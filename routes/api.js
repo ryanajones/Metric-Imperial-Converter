@@ -31,7 +31,7 @@ module.exports = function (app) {
       toString === 'invalid unit' ||
       toString === 'invalid number and unit'
     ) {
-      res.json({ t: 'hello' });
+      res.json(toString);
     } else {
       res.json({
         initNum,
