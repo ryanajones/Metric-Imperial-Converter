@@ -33,6 +33,12 @@ suite('Unit Tests', function () {
       done();
     });
 
+    test('no Letter', function (done) {
+      const input = '12345';
+      assert.equal(convertHandler.getNum(input), 12345);
+      done();
+    });
+
     test('Fractional Input w/ Decimal', function (done) {
       const input = '3.5/7L';
       assert.equal(convertHandler.getNum(input), 0.5);
@@ -89,8 +95,7 @@ suite('Unit Tests', function () {
     });
 
     test('Unknown Unit Input', function (done) {
-      const input = 'Unknown';
-      assert.equal(convertHandler.getUnit(input), 'invalid unit');
+      assert.equal(convertHandler.getUnit('unknown'), 'invalid unit');
       done();
     });
   });
@@ -127,7 +132,7 @@ suite('Unit Tests', function () {
   suite('Function convertHandler.convert(num, unit)', function () {
     test('Gal to L', function (done) {
       const input = [5, 'gal'];
-      const expected = 18.9271;
+      const expected = 18.92705;
       assert.approximately(
         convertHandler.convert(input[0], input[1]),
         expected,
@@ -149,7 +154,7 @@ suite('Unit Tests', function () {
 
     test('Mi to Km', function (done) {
       const input = [5, 'mi'];
-      const expected = 8.04672;
+      const expected = 8.0467;
       assert.approximately(
         convertHandler.convert(input[0], input[1]),
         expected,
@@ -182,7 +187,7 @@ suite('Unit Tests', function () {
 
     test('Kg to Lbs', function (done) {
       const input = [5, 'kg'];
-      const expected = 11.0231;
+      const expected = 11.02312;
       assert.approximately(
         convertHandler.convert(input[0], input[1]),
         expected,

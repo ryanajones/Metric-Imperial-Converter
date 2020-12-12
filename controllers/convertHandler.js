@@ -10,8 +10,13 @@
 function ConvertHandler() {
   this.getNum = function (input) {
     const regexSplit = /[a-z]/i;
-    const index = input.search(regexSplit);
-    let result = input.slice(0, index);
+    let result;
+    if (regexSplit.test(input) === true) {
+      const indexSplit = input.search(regexSplit);
+      result = input.slice(0, indexSplit);
+    } else {
+      result = input;
+    }
     const regexNum = /[1-9]\d*(\.\d+)?\/?[1-9]?(\d*)?(\.\d+)?/;
     const regexDoubleFraction = /\//g;
 
@@ -19,6 +24,7 @@ function ConvertHandler() {
       result = 1;
       return result;
     }
+
     if (regexNum.test(result) === false) {
       result = 'invalid number';
     } else if (
@@ -28,8 +34,12 @@ function ConvertHandler() {
       result = 'invalid number';
     } else {
       result = eval(result);
+      const resultString = result.toString();
+      const index = resultString.indexOf('.');
+      if (resultString.length - index - 1 > 5) {
+        result = parseFloat(result.toFixed(5));
+      }
     }
-
     return result;
   };
 
@@ -120,11 +130,11 @@ function ConvertHandler() {
 
   this.convert = function (initNum, initUnit) {
     const galToL = 3.78541;
-    const literToGal = 0.264172;
+    /*  const literToGal = 0.264172; */
     const lbsToKg = 0.453592;
-    const kgToLbs = 2.20462;
+    /*  const kgToLbs = 2.20462; */
     const miToKm = 1.60934;
-    const kmToMi = 0.621371;
+    /*   const kmToMi = 0.62137; */
 
     let result;
 
@@ -138,24 +148,33 @@ function ConvertHandler() {
           result = initNum * galToL;
           break;
         case 'L':
-          result = initNum * literToGal;
+          result = initNum / galToL;
           break;
         case 'lbs':
           result = initNum * lbsToKg;
           break;
         case 'kg':
-          result = initNum * kgToLbs;
+          result = initNum / lbsToKg;
           break;
         case 'mi':
           result = initNum * miToKm;
           break;
         case 'km':
-          result = initNum * kmToMi;
+          result = initNum / miToKm;
           break;
         default:
           result = 'invalid number';
       }
     }
+
+    if (result !== 'invalid number') {
+      const resultString = result.toString();
+      const index = resultString.indexOf('.');
+      if (resultString.length - index - 1 > 5) {
+        result = Number.parseFloat(result.toFixed(5));
+      }
+    }
+
     return result;
   };
 
