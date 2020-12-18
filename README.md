@@ -12,4 +12,4 @@ https://repl.it/@ryanajones/Metric-Imperial-Converter#README.md
 
 ## Screenshot
 
-![alt text](https://i.imgur.com/U2wHfu6.png)
+![alt text](https://i.imgur.com/FZbNIMX.png)
