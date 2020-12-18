@@ -16,15 +16,24 @@
       <h1>Imperial Metric Converter</h1>
     </div>
   </header>
-  <div class="container">
-
+  <div class="bar"></div>
+  <div class="form-container">
+    <h2>Valid Measurements</h2>
+    <ul>
+      <li><span>gal</span></li>
+      <li><span>L</span></li>
+      <li><span>lbs</span></li>
+      <li><span>kg</span></li>
+      <li><span>mi</span></li>
+      <li><span>km</span></li>
+    </ul>
+    <form id="convertForm" class="border">
+      <input type="text" id="convertField" name="input" placeholder="3.1mi" style="width: 200px">
+      <input id="convert" type="submit" value='Convert!'>
+    </form>
+    <p id='result'></p>
+    <code id='jsonResult'></code>
   </div>
-  <form id="convertForm" class="border">
-    <input type="text" id="convertField" name="input" placeholder="3.1mi" style="width: 200px">
-    <input id="convert" type="submit" value='Convert!'>
-  </form>
-  <p id='result'></p>
-  <code id='jsonResult'></code>
   <!-- Your web-app is https, so your scripts need to be too -->
   <script src="https://code.jquery.com/jquery-2.2.1.min.js"
     integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00=" crossorigin="anonymous"></script>
