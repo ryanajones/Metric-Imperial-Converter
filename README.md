@@ -1,4 +1,4 @@
-# Imperial Metric Converter
+# Metric Imperial Converter
 
 >Convert your imperial weights and measurements to the metric system and vice versa.
 
