@@ -21,13 +21,13 @@ body header {
   background-color: black;
 }
 
-body header .title {
+body header #title {
   width: 50%;
   height: 100%;
   margin: 0 auto;
 }
 
-body header .title h1 {
+body header #title h1 {
   width: 100%;
   margin: 0 auto;
   padding-top: 21px;
@@ -38,7 +38,7 @@ body header .title h1 {
   letter-spacing: 2px;
 }
 
-body .bar {
+body #bar {
   width: 90vw;
   height: 34px;
   border-radius: 0 10px 10px 0;
@@ -46,7 +46,7 @@ body .bar {
   background-image: linear-gradient(to right, #db5800, #ff0055);
 }
 
-body .form-container {
+body #content-container {
   position: relative;
   left: 25vw;
   bottom: 15px;
@@ -58,26 +58,51 @@ body .form-container {
   background-color: #fff;
 }
 
-body .form-container h2 {
+body #content-container h2 {
   margin-top: 0;
   font-size: 2em;
 }
 
-body .form-container li span {
+body #content-container #measurements-example-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 50%;
+}
+
+body #content-container #measurements-example-wrapper #measurements {
+  width: 50%;
+}
+
+body #content-container #measurements-example-wrapper #measurements li span {
   position: relative;
   left: 10px;
 }
 
-body .form-container li::marker {
+body #content-container #measurements-example-wrapper #measurements li::marker {
   color: #db5800;
   content: "►";
 }
 
-body .form-container form {
-  margin: 50px 0 20px 0;
+body #content-container #measurements-example-wrapper #url-example {
+  width: 50%;
+  height: 100%;
+  padding-left: 40px;
 }
 
-body .form-container #result {
+body #content-container #measurements-example-wrapper #url-example code {
+  background-color: #f1f1f1;
+}
+
+body #content-container #form-wrapper {
+  height: 50%;
+}
+
+body #content-container #form-wrapper form {
+  margin: 30px 0 20px 0;
+}
+
+body #content-container #form-wrapper #result {
   margin: 50px 0 40px 0;
 }
 /*# sourceMappingURL=style.css.map */

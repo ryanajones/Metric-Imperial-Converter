@@ -12,27 +12,42 @@
 
 <body>
   <header>
-    <div class="title">
+    <div id="title">
       <h1>Metric Imperial Converter</h1>
     </div>
   </header>
-  <div class="bar"></div>
-  <div class="form-container">
-    <h2>Valid Measurements</h2>
-    <ul>
-      <li><span>gal</span></li>
-      <li><span>L</span></li>
-      <li><span>lbs</span></li>
-      <li><span>kg</span></li>
-      <li><span>mi</span></li>
-      <li><span>km</span></li>
-    </ul>
-    <form id="convertForm" class="border">
-      <input type="text" id="convertField" name="input" placeholder="3.1mi" style="width: 200px">
-      <input id="convert" type="submit" value='Convert!'>
-    </form>
-    <p id='result'></p>
-    <code id='jsonResult'></code>
+  <div id="bar"></div>
+  <div id="content-container">
+    <div id="measurements-example-wrapper">
+      <div id="measurements">
+        <h2>Valid Measurements</h2>
+        <ul>
+          <li><span>gal</span></li>
+          <li><span>L</span></li>
+          <li><span>lbs</span></li>
+          <li><span>kg</span></li>
+          <li><span>mi</span></li>
+          <li><span>km</span></li>
+        </ul>
+      </div>
+      <div id="url-example">
+        <p>
+          Use the convert button, or alternatively, enter input into the url as a query parameter.
+        </p>
+        <h4>Example :</h4>
+        <code>/api/convert?input=3.1mi</code><br>
+        <code>/api/convert?input=1/2gal</code><br>
+        <code>/api/convert?input=2.5/7L</code><br>
+      </div>
+    </div>
+    <div id="form-wrapper">
+      <form id="convertForm">
+        <input type="text" id="convertField" name="input" placeholder="3.1mi" style="width: 200px">
+        <input id="convert" type="submit" value='Convert!'>
+      </form>
+      <p id='result'></p>
+      <code id='jsonResult'></code>
+    </div>
   </div>
   <!-- Your web-app is https, so your scripts need to be too -->
   <script src="https://code.jquery.com/jquery-2.2.1.min.js"

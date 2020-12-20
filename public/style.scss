@@ -16,7 +16,7 @@ body {
     width: 100%;
     height: 80px;
     background-color: black;
-    .title {
+    #title {
       width: 50%;
       height: 100%;
       margin: 0 auto;
@@ -32,7 +32,7 @@ body {
       }
     }
   }
-  .bar {
+  #bar {
     width: 90vw;
     height: 34px;
     border-radius: 0 10px 10px 0;
@@ -42,7 +42,7 @@ body {
       rgb(255, 0, 85)
     );
   }
-  .form-container {
+  #content-container {
     position: relative;
     left: 25vw;
     bottom: 15px;
@@ -56,21 +56,39 @@ body {
       margin-top: 0;
       font-size: 2em;
     }
-    li {
-      span {
-        position: relative;
-        left: 10px;
+    #measurements-example-wrapper {
+      display: flex;
+      height: 50%;
+      #measurements {
+        width: 50%;
+        li {
+          span {
+            position: relative;
+            left: 10px;
+          }
+        }
+        li::marker {
+          color: rgb(219, 88, 0);
+          content: "►";
+        }
+      }
+      #url-example {
+        width: 50%;
+        height: 100%;
+        padding-left: 40px;
+        code {
+          background-color: rgb(241, 241, 241);
+        }
       }
     }
-    li::marker {
-      color: rgb(219, 88, 0);
-      content: "►";
-    }
-    form {
-      margin: 50px 0 20px 0;
-    }
-    #result {
-      margin: 50px 0 40px 0;
+    #form-wrapper {
+      height: 50%;
+      form {
+        margin: 30px 0 20px 0;
+      }
+      #result {
+        margin: 50px 0 40px 0;
+      }
     }
   }
 }
